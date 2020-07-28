@@ -18,7 +18,7 @@ if(!$select_user_query){
     die("Query Failed" .mysqli_error($connection) );
 
 }
- while($row = mysqli_fetch_assoc($select_user_query)){
+ while($row = mysqli_fetch_array($select_user_query)){
 
      $db_user_id = $row['user_id'];
      $db_username = $row['username'];
