@@ -67,20 +67,20 @@ confirmQuery($edit_user_query);
 
 <form action="" method="post" enctype="multipart/form-data">
 
-<div class="form-group">
-<label for="firstname">Firstname</label>
-<input type="text" value="<?php echo $user_firstname ;?>"class="form-control" name="user_firstname">
-</div>
+    <div class="form-group">
+        <label for="firstname">Firstname</label>
+        <input type="text" value="<?php echo $user_firstname ;?>" class="form-control" name="user_firstname">
+    </div>
 
-<div class="form-group">
-<label for="post_status">Lastname</label>
-<input type="text" value="<?php echo $user_lastname ;?>" class="form-control" name="user_lastname">
-</div>
+    <div class="form-group">
+        <label for="post_status">Lastname</label>
+        <input type="text" value="<?php echo $user_lastname ;?>" class="form-control" name="user_lastname">
+    </div>
 
-<div class="form-group">
-<select name="user_role" id="">
-<option value="subscriber"><?php echo $user_role ;?></option>
-<?php
+    <div class="form-group">
+        <select name="user_role" id="">
+            <option value="subscriber"><?php echo $user_role ;?></option>
+            <?php
 
 if($user_role == 'admin'){
 
@@ -94,35 +94,35 @@ if($user_role == 'admin'){
 
 ?>
 
-</select>
-</div>
+        </select>
+    </div>
 
 
 
 
-<!-- <div class="form-group">
+    <!-- <div class="form-group">
 <label for="post_image">Post Image</label>
 <input type="file" name="post_image">
 </div> -->
 
-<div class="form-group">
-<label for="username">Username</label>
-<input type="text" value="<?php echo $username ;?>" class="form-control" name="username">
-</div>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" value="<?php echo $username ;?>" class="form-control" name="username">
+    </div>
 
 
-<div class="form-group">
-<label for="post_content">Email</label>
-<input type="email" value="<?php echo $user_email ;?>" class="form-control" name="user_email">
-</div>
+    <div class="form-group">
+        <label for="post_content">Email</label>
+        <input type="email" value="<?php echo $user_email ;?>" class="form-control" name="user_email">
+    </div>
 
-<div class="form-group">
-<label for="password">Password</label>
-<input type="password" value="<?php echo $user_password ;?>" class="form-control" name="user_password">
-</div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" value="<?php echo $user_password ;?>" class="form-control" name="user_password">
+    </div>
 
-<div class="form-group">
-<input type="submit" class="btn btn-primary" name="edit_user" value="Update user">
-</div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" name="edit_user" value="Update user">
+    </div>
 
 </form>

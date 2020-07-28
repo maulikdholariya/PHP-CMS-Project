@@ -1,17 +1,17 @@
 <?php include "includes/db.php";   ?>
 <?php include "includes/header.php";   ?>
-<?php include "includes/navigation.php"; ?>  
+<?php include "includes/navigation.php"; ?>
 
-    <!-- Page Content -->
-    <div class="container">
+<!-- Page Content -->
+<div class="container">
 
-        <div class="row">
+    <div class="row">
 
-            <!-- Blog Entries Column -->
+        <!-- Blog Entries Column -->
 
 
-            <div class="col-md-8">
-<?php
+        <div class="col-md-8">
+            <?php
 
 
 if(isset($_GET['p_id'])){
@@ -29,33 +29,33 @@ if(isset($_GET['p_id'])){
             ?>
 
 
-<h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
+            <h1 class="page-header">
+                Page Heading
+                <small>Secondary Text</small>
+            </h1>
 
-                <!-- First Blog Post -->
-                <h2>
-                    <a href="#"><?php echo $post_title ?></a>
-                </h2>
-                <p class="lead">
-                    by <a href="index.php"><?php echo $post_author ?></a>
-                </p>
-                <p><span class="glyphicon glyphicon-time"></span><?php echo $post_date ?></p>
-                <hr>
-                <img class="img-responsive" src="images/<?php echo $post_image;?>" alt="">
-                <hr>
-                <p><?php echo $post_content ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <!-- First Blog Post -->
+            <h2>
+                <a href="#"><?php echo $post_title ?></a>
+            </h2>
+            <p class="lead">
+                by <a href="index.php"><?php echo $post_author ?></a>
+            </p>
+            <p><span class="glyphicon glyphicon-time"></span><?php echo $post_date ?></p>
+            <hr>
+            <img class="img-responsive" src="images/<?php echo $post_image;?>" alt="">
+            <hr>
+            <p><?php echo $post_content ?></p>
+            <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
-                <hr>
+            <hr>
 
 
-          <?php  } ?>
-                
+            <?php  } ?>
 
-                <!-- Blog Comments -->
-<?php 
+
+            <!-- Blog Comments -->
+            <?php 
 
   if(isset($_POST['create_comment'])){
 
@@ -87,30 +87,30 @@ $update_comment_count = mysqli_query($connection, $query);
 
 
     ?>
-                <!-- Comments Form -->
-                <div class="well">
-                    <h4>Leave a Comment:</h4>
-                    <form action="" method="post" role="form">
+            <!-- Comments Form -->
+            <div class="well">
+                <h4>Leave a Comment:</h4>
+                <form action="" method="post" role="form">
                     <div class="form-group">
-                    <label for="author" class="">Author</label>
-                            <input type="text" class="form-control" name="comment_author">
-                        </div>
-                        <div class="form-group">
+                        <label for="author" class="">Author</label>
+                        <input type="text" class="form-control" name="comment_author">
+                    </div>
+                    <div class="form-group">
                         <label for="email" class="">Email</label>
-                            <input type="email" class="form-control" name="comment_email">
-                        </div>
-                        <div class="form-group">
+                        <input type="email" class="form-control" name="comment_email">
+                    </div>
+                    <div class="form-group">
                         <label for="comment" class="">Your comment</label>
-                            <textarea name="comment_content" class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" name="create_comment">Submit</button>
-                    </form>
-                </div>
+                        <textarea name="comment_content" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="create_comment">Submit</button>
+                </form>
+            </div>
 
-                <hr>
+            <hr>
 
-                <!-- Posted Comments -->
-<?php 
+            <!-- Posted Comments -->
+            <?php 
                     $query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} ";
                     $query .= "AND comment_status = 'approve' ";
                     $query .= "ORDER BY comment_id DESC ";
@@ -127,39 +127,38 @@ $update_comment_count = mysqli_query($connection, $query);
 
 
 
-                <!-- Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading"><?php echo $comment_author; ?>
-                            <small><?php echo $comment_date; ?></small>
-                        </h4>
-                        <?php echo $comment_content; ?>
-                    </div>
+            <!-- Comment -->
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><?php echo $comment_author; ?>
+                        <small><?php echo $comment_date; ?></small>
+                    </h4>
+                    <?php echo $comment_content; ?>
                 </div>
+            </div>
 
 
-                    <?php  }?>    
+            <?php  }?>
 
 
 
 
 
-                <!-- Comment -->
-               
-                
-</div>
+            <!-- Comment -->
 
-            <!-- Blog Sidebar Widgets Column -->
-            
-<?php include "includes/sidebar.php"; ?>
 
         </div>
-        <!-- /.row -->
 
-        <hr>
+        <!-- Blog Sidebar Widgets Column -->
 
-       <?php include "includes/footer.php"; ?>
-       
+        <?php include "includes/sidebar.php"; ?>
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <?php include "includes/footer.php"; ?>

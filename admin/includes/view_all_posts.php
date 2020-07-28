@@ -1,22 +1,22 @@
 <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Author</th>
-                            <th>Title</th>
-                            <th>Category</th>
-                            <th>Status</th>
-                            <th>Image</th>  
-                            <th>Tags</th>
-                            <th>Comments</th>
-                            <th>Date</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                
-                    <?php
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Image</th>
+            <th>Tags</th>
+            <th>Comments</th>
+            <th>Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <?php
 
                     $query = "SELECT * FROM posts";
                     $select_posts = mysqli_query($connection,$query);
@@ -59,10 +59,10 @@ echo"<td><img width='100' src='../images/$post_image' alt='image'></td>";
                     
                     }
                         ?>
-                                        
-                </tbody>
-                </table>
-                <?php 
+
+    </tbody>
+</table>
+<?php 
                 if(isset($_GET['delete'])){
                     $the_post_id=$_GET['delete'];
                     $query = "DELETE FROM posts WHERE post_id={$the_post_id} ";
@@ -73,4 +73,3 @@ echo"<td><img width='100' src='../images/$post_image' alt='image'></td>";
 
 
                 ?>
-            

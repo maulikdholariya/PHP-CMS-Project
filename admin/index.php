@@ -9,7 +9,7 @@
 
 
 
-        
+
         <div id="page-wrapper">
 
             <div class="container-fluid">
@@ -24,7 +24,7 @@
                             <small><?php echo $_SESSION['username']; ?></small>
                         </h1>
 
-                           <!-- <ol class="breadcrumb">
+                        <!-- <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
                             </li>
@@ -42,4 +42,4 @@
         </div>
         <!-- /#page-wrapper -->
 
-   <?php include "includes/admin_footer.php"?>
+        <?php include "includes/admin_footer.php"?>
