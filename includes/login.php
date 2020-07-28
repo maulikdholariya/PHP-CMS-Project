@@ -18,14 +18,14 @@ if(!$select_user_query){
     die("Query Failed" .mysqli_error($connection) );
 
 }
- while($row = mysqli_fetch_array($select_user_query)){
+ while($row = mysqli_fetch_assoc($select_user_query)){
 
      $db_user_id = $row['user_id'];
      $db_username = $row['username'];
      $db_user_password = $row['user_password'];
      $db_user_firstname = $row['user_firstname'];
      $db_user_lastname = $row['user_lastname'];
-     $db_user_role = $row['user__role'];
+     $db_user_role = $row['user_role'];
      
 }  
 

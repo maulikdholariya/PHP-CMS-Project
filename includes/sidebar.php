@@ -23,7 +23,7 @@
     <!-- login -->
     <div class="well">
         <h4>Login</h4>
-        <form action="..admin/includes/login.php" method="post">
+        <form action=" ../cms001/includes/login.php" method="post">
 
             <div class="form-group">
                 <input name="username" type="text" class="form-control" placeholder="Enter Username">
