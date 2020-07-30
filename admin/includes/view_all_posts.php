@@ -69,29 +69,29 @@ echo"<td><img width='100' src='../images/$post_image' alt='image'></td>";
 </table>
 <?php 
 
-                if(isset($_GET['change_to_published'])){
+    if(isset($_GET['change_to_published'])){
 
-                    $the_post_id=$_GET['change_to_published'];
-                    $query = "UPDATE posts SET post_status = 'published' WHERE post_id = $the_post_id ";
+        $the_post_id=$_GET['change_to_published'];
+        $query = "UPDATE posts SET post_status = 'published' WHERE post_id = $the_post_id ";
 
-                    $change_to_published_query  = mysqli_query($connection, $query);
-                    header("location: posts.php");
-                }
-                if(isset($_GET['change_to_draft'])){
+        $change_to_published_query  = mysqli_query($connection, $query);
+        header("location: posts.php");
+    }
+    if(isset($_GET['change_to_draft'])){
 
-                    $the_post_id=$_GET['change_to_draft'];
-                    $query = "UPDATE posts SET post_status = 'draft' WHERE post_id = $the_post_id ";
+        $the_post_id=$_GET['change_to_draft'];
+        $query = "UPDATE posts SET post_status = 'draft' WHERE post_id = $the_post_id ";
 
-                    $change_to_draft_query  = mysqli_query($connection, $query);
-                    header("location: posts.php");
-                }
-                if(isset($_GET['delete'])){
-                    $the_post_id=$_GET['delete'];
-                    $query = "DELETE FROM posts WHERE post_id={$the_post_id} ";
+        $change_to_draft_query  = mysqli_query($connection, $query);
+        header("location: posts.php");
+    }
+    if(isset($_GET['delete'])){
+        $the_post_id=$_GET['delete'];
+        $query = "DELETE FROM posts WHERE post_id={$the_post_id} ";
 
-                    $delete_query  = mysqli_query($connection, $query);
-                    header("location: Posts.php");
-                }
+        $delete_query  = mysqli_query($connection, $query);
+        header("location: Posts.php");
+    }
 
 
                 ?>
