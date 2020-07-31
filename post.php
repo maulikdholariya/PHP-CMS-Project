@@ -46,7 +46,7 @@ if(isset($_GET['p_id'])){
             <img class="img-responsive" src="images/<?php echo $post_image;?>" alt="">
             <hr>
             <p><?php echo $post_content ?></p>
-            
+
 
             <hr>
 
@@ -111,18 +111,18 @@ $update_comment_count = mysqli_query($connection, $query);
 
             <!-- Posted Comments -->
             <?php 
-                    $query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} ";
-                    $query .= "AND comment_status = 'approve' ";
-                    $query .= "ORDER BY comment_id DESC ";
-                    $select_comment_query = mysqli_query($connection, $query);
-                    if(!$select_comment_query){
+            $query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} ";
+            $query .= "AND comment_status = 'approve' ";
+            $query .= "ORDER BY comment_id DESC ";
+            $select_comment_query = mysqli_query($connection, $query);
+            if(!$select_comment_query){
 
-                        die('Query Failed' .mysqli_error($connection));
-                    }
-                    while ($row = mysqli_fetch_array($select_comment_query)){
-                        $comment_date = $row['comment_date'];
-                        $comment_content = $row['comment_content'];
-                        $comment_author = $row['comment_author'];
+                die('Query Failed' .mysqli_error($connection));
+            }
+            while ($row = mysqli_fetch_array($select_comment_query)){
+                $comment_date = $row['comment_date'];
+                $comment_content = $row['comment_content'];
+                $comment_author = $row['comment_author'];
 ?>
 
 
