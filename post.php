@@ -36,7 +36,7 @@ if(isset($_GET['p_id'])){
 
             <!-- First Blog Post -->
             <h2>
-                <a href="#"><?php echo $post_title ?></a>
+                <a href="#"><?php echo $post_title ;?></a>
             </h2>
             <p class="lead">
                 by <a href="index.php"><?php echo $post_author ?></a>
