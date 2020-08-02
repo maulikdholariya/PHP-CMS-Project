@@ -1,73 +1,67 @@
-<?php  include "includes/db.php"; ?>
- <?php  include "includes/header.php"; ?>
+<?php include "includes/db.php";?>
+ <?php include "includes/header.php";?>
 
 
-<?php 
+<?php
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
     $username = $_POST['username'];
-    $email    = $_POST['email'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
-    if(!empty( $username) && !empty($email) && !empty($password)){
+    if (!empty($username) && !empty($email) && !empty($password)) {
 
-    $username = mysqli_real_escape_string($connection, $username);
-    $email    = mysqli_real_escape_string($connection, $email);
-    $password = mysqli_real_escape_string($connection, $password);
+        $username = mysqli_real_escape_string($connection, $username);
+        $email = mysqli_real_escape_string($connection, $email);
+        $password = mysqli_real_escape_string($connection, $password);
 
- $query = "SELECT randSalt FROM users";
- $select_randsalt_query=mysqli_query($connection, $query);
+        $query = "SELECT randSalt FROM users";
+        $select_randsalt_query = mysqli_query($connection, $query);
 
- if(!$select_randsalt_query){
+        if (!$select_randsalt_query) {
 
-    die("Query Failed" .mysqli_error($connection));
+            die("Query Failed" . mysqli_error($connection));
 
- } 
+        }
 
- $row = mysqli_fetch_array($select_randsalt_query);
+        $row = mysqli_fetch_array($select_randsalt_query);
 
-   $salt= $row['randSalt'];
-   $password = crypt($password,$salt);
+        $salt = $row['randSalt'];
+        $password = crypt($password, $salt);
 
-   $query="INSERT INTO users(username, user_email, user_password, user_role) "; 
-   $query .= "VALUES('{$username}','{$email}','{$password}','subscriber' ) ";
-   
-   $register_user_query=mysqli_query($connection, $query);
-   
-   if(!$register_user_query){
+        $query = "INSERT INTO users(username, user_email, user_password, user_role) ";
+        $query .= "VALUES('{$username}','{$email}','{$password}','subscriber' ) ";
 
-    die("Query Failed" .mysqli_error($connection). ' '. mysqli_errno($connection));
+        $register_user_query = mysqli_query($connection, $query);
 
- } 
- $massage = "Your Registration has been submitted";
+        if (!$register_user_query) {
 
+            die("Query Failed" . mysqli_error($connection) . ' ' . mysqli_errno($connection));
 
+        }
+        $massage = "Your Registration has been submitted";
+
+    } else {
+
+        $massage = "Filed cannot be empty";
+    }
 
 } else {
 
-    $massage = "Filed cannot be empty";
+    $massage = "";
 }
-
- 
-}else{
-
-    $massage ="";
-}
-
-
-
 
 ?>
 
     <!-- Navigation -->
-    
-    <?php  include "includes/navigation.php"; ?>
-    
- 
+
+    <?php include "includes/navigation.php";?>
+
+
     <!-- Page Content -->
     <div class="container">
-    
+
 <section id="login">
     <div class="container">
         <div class="row">
@@ -88,10 +82,10 @@ if(isset($_POST['submit'])){
                             <label for="password" class="sr-only">Password</label>
                             <input type="password" name="password" id="key" class="form-control" placeholder="Password">
                         </div>
-                
+
                         <input type="submit" name="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Register">
                     </form>
-                 
+
                 </div>
             </div> <!-- /.col-xs-12 -->
         </div> <!-- /.row -->

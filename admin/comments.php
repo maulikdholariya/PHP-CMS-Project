@@ -19,38 +19,37 @@
                         <small>Auther</small>
                     </h1>
                     <?php
-       if(isset($_GET['source'])){
+if (isset($_GET['source'])) {
 
-        $source = $_GET['source'] ;
-        
-        }
-         else{
-        
-            $source='';
-        
-        }           
-        
-        switch($source){
-        
-        case 'add_post';
+    $source = $_GET['source'];
+
+} else {
+
+    $source = '';
+
+}
+
+switch ($source) {
+
+    case 'add_post';
         include "includes/add_post.php";
         break;
-        
-        case 'edit_post';
+
+    case 'edit_post';
         include "includes/edit_post.php";
         break;
-        
-        case '454';
+
+    case '454';
         echo "nice 454";
         break;
-        
-        default:
+
+    default:
         include "includes/view_all_comments.php";
         break;
-        
-        }
 
-        ?>
+}
+
+?>
 
 
 

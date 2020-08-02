@@ -1,17 +1,14 @@
 <?php include "../includes/db.php";?>
-<?php include "function.php"; ?>
-<?php ob_start(); ?>
-<?php session_start(); ?>
+<?php include "function.php";?>
+<?php ob_start();?>
+<?php session_start();?>
 <?php
 
-if(!isset($_SESSION['user_role'])){
+if (!isset($_SESSION['user_role'])) {
 
- header("Location: ../index.php");    
-    
-} 
+    header("Location: ../index.php");
 
-
-
+}
 
 ?>
 
@@ -47,7 +44,7 @@ if(!isset($_SESSION['user_role'])){
     <![endif]-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- <script type="text/javascript"> -->
-    
+
     <script src="js/ckeditor.js"></script>
 </head>
 

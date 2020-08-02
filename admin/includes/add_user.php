@@ -1,43 +1,31 @@
-<?php 
+<?php
 
-if(isset($_POST['create_user'])){
+if (isset($_POST['create_user'])) {
 
-           
-          $user_firstname = $_POST['user_firstname']; 
-          $user_lastname= $_POST['user_lastname']; 
-          $user_role = $_POST['user_role'];
-      
-           
-        //   $post_image = $_FILES['post_image']['name']; 
-        //   $post_image_temp= $_FILES['post_image']['tmp_name']; 
+    $user_firstname = $_POST['user_firstname'];
+    $user_lastname = $_POST['user_lastname'];
+    $user_role = $_POST['user_role'];
 
+    //   $post_image = $_FILES['post_image']['name'];
+    //   $post_image_temp= $_FILES['post_image']['tmp_name'];
 
-          $username = $_POST['username']; 
-          $user_email = $_POST['user_email']; 
-          $user_password = $_POST['user_password']; 
-        //   $post_date = date('d-m-y'); 
-      
-                    
+    $username = $_POST['username'];
+    $user_email = $_POST['user_email'];
+    $user_password = $_POST['user_password'];
+    //   $post_date = date('d-m-y');
 
-            // move_uploaded_file($post_image_temp, "../images/$post_image" );
+    // move_uploaded_file($post_image_temp, "../images/$post_image" );
 
-$query="INSERT INTO users(user_firstname,user_lastname,user_role,username,user_email,user_password) "; 
-$query .= "VALUES('{$user_firstname}','{$user_lastname}','{$user_role}','{$username}','{$user_email}','{$user_password}' ) ";
+    $query = "INSERT INTO users(user_firstname,user_lastname,user_role,username,user_email,user_password) ";
+    $query .= "VALUES('{$user_firstname}','{$user_lastname}','{$user_role}','{$username}','{$user_email}','{$user_password}' ) ";
 
-$create_user_query=mysqli_query($connection,$query);
+    $create_user_query = mysqli_query($connection, $query);
 
-confirmQuery($create_user_query);   
+    confirmQuery($create_user_query);
 
-
-echo "User Created: "." ". "<a href='users.php'>View Users</a> ";
-
+    echo "User Created: " . " " . "<a href='users.php'>View Users</a> ";
 
 }
-
-
-
-
-
 
 ?>
 

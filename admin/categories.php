@@ -1,9 +1,9 @@
-<?php include "includes/admin_header.php" ?>
+<?php include "includes/admin_header.php"?>
 
 <div id="wrapper">
 
     <!-- Navigation -->
-    <?php include "includes/admin_navigation.php" ?>
+    <?php include "includes/admin_navigation.php"?>
 
 
 
@@ -21,7 +21,7 @@
                     <div class="col-xs-6">
 
 
-                        <?php insert_categories();  ?>
+                        <?php insert_categories();?>
 
                         <form action="" method="post">
                             <div class="form-group">
@@ -39,14 +39,13 @@
 
 
                         <?php
-                        if(isset($_GET['edit']))
-                        {
-                        $cat_id = $_GET['edit'];
-                        
-                        include "includes/update_categories.php";
-                      
-                        }
-                        ?>
+if (isset($_GET['edit'])) {
+    $cat_id = $_GET['edit'];
+
+    include "includes/update_categories.php";
+
+}
+?>
 
 
                     </div> <!-- add category Form -->
@@ -62,9 +61,9 @@
                             <tbody>
                                 <tr>
                                     <!-- find all categories -->
-                                    <?php  findAllcategories(); ?>
+                                    <?php findAllcategories();?>
                                     <!-- delete Query  -->
-                                    <?php deletecategories(); ?>
+                                    <?php deletecategories();?>
                                 </tr>
                             </tbody>
                         </table>
