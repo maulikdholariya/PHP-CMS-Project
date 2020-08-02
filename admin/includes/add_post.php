@@ -28,7 +28,9 @@ $create_post_query=mysqli_query($connection,$query);
 
 confirmQuery($create_post_query);   
 
+$the_post_id  = mysqli_insert_id($connection);
 
+echo "<p class='bg-success'> Post Created. <a href='../post.php?p_id={$the_post_id}'> View Post </a> or <a href='posts.php'>Add More Posts</a> </p>";
 
 
 
@@ -81,10 +83,11 @@ echo "<option value='$cat_id'>{$cat_title}</option>";
         <input type="text" class="form-control" name="post_author">
     </div>
 
-    <label for="post_status">Post Status</label>
+    
     <div class="form-group">
         
         <select name="post_status" id="" >
+         <option value='draft'>Post Status</option>
          <option value='draft'>Draft</option>
          <option value='published'>Published</option> 
        
