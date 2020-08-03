@@ -126,6 +126,7 @@ echo "<td>$post_id</td>";
 }
 ?>
 
+
         </tbody>
     </table>
 </form>
