@@ -40,8 +40,12 @@ if (isset($_POST['submit'])) {
             die("Query Failed" . mysqli_error($connection) . ' ' . mysqli_errno($connection));
 
         }
+        
         $massage = "Your Registration has been submitted";
 
+          header("Location: registration.php"); 
+
+        
     } else {
 
         $massage = "Filed cannot be empty";
