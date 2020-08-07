@@ -124,8 +124,8 @@ while ($row = mysqli_fetch_assoc($select_posts)) {
     $post_views_count = $row['post_views_count'];
     echo "<tr>";
     ?>
-            <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
-            <?php
+      <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
+ <?php
     echo "<td>$post_id</td>";
     echo "<td>$post_author</td>";
     echo "<td>$post_title</td>";
@@ -138,16 +138,25 @@ while ($row = mysqli_fetch_assoc($select_posts)) {
         $cat_id = $row['cat_id'];
         $cat_title = $row['cat_title'];
 
-        echo "<td>{$cat_title}</td>";
+    echo "<td>{$cat_title}</td>";
 
     }
     echo "<td>$post_status</td>";
     echo "<td><img width='100' src='../images/$post_image' alt='image'></td>";
     echo "<td>$post_tags</td>";
+  
+       $query = "SELECT * FROM comments WHERE comment_post_id = $post_id";
+       $send_comment_query=mysqli_query($connection,$query);
+       $count_comments =mysqli_num_rows($send_comment_query);
 
-    echo "<td>$post_tags</td>";
-    echo "<td>$post_comment_count</td>";
+       $query1 = "SELECT * FROM comments";
+       $comment_query=mysqli_query($connection,$query1);
+       $row = mysqli_fetch_array($comment_query);
+       $comment_id = $row['comment_id'];
 
+    echo "<td><a href='post_comments.php?id=$comment_id'>$count_comments</a></td>"; 
+
+   
     echo "<td>$post_date</td>";
     echo "<td><a href= '../post.php?p_id={$post_id}'>View Post</a></td>";
     echo "<td><a href= 'posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
@@ -156,6 +165,7 @@ while ($row = mysqli_fetch_assoc($select_posts)) {
     echo "</tr>";
 
 }
+
 ?>
 
 
