@@ -40,27 +40,20 @@ $(document).ready(function () {
         $(this).remove();
     });
 
+    function loadUsersOnline() {
+
+        $.get("function.php?onlineusers=result", function(data) {
+
+            $(".usersonline").text(data);
+
+        });
+
+    }
+    setInterval(function () {
+
+        loadUsersOnline();
+
+    },500);
+
 
 });
-
-function loadUsersOnline() {
-
-    $.get("fuction.php?onlineusers=result", function (data) {
-        
-        $(".usersonline").text(data);
-
-    });
-
-
-
-}
-
-setInterval(function(){
-
-
-    loadUsersOnline();
-
-},500);
-
-
-

@@ -126,7 +126,7 @@ while ($row = mysqli_fetch_assoc($select_posts)) {
     ?>
             <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
             <?php
-echo "<td>$post_id</td>";
+    echo "<td>$post_id</td>";
     echo "<td>$post_author</td>";
     echo "<td>$post_title</td>";
 
@@ -144,7 +144,10 @@ echo "<td>$post_id</td>";
     echo "<td>$post_status</td>";
     echo "<td><img width='100' src='../images/$post_image' alt='image'></td>";
     echo "<td>$post_tags</td>";
+
+    echo "<td>$post_tags</td>";
     echo "<td>$post_comment_count</td>";
+
     echo "<td>$post_date</td>";
     echo "<td><a href= '../post.php?p_id={$post_id}'>View Post</a></td>";
     echo "<td><a href= 'posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
@@ -170,7 +173,7 @@ if (isset($_GET['delete'])) {
 }
 if (isset($_GET['reset'])) {
     $the_post_id = $_GET['reset'];
-    $query = "UPDATE posts SET post_views_count = 0 WHERE post_id=" .mysqli_real_escape_string($connection, $_GET['reset']) . " ";
+    $query = "UPDATE posts SET post_views_count = 0 WHERE post_id=" . mysqli_real_escape_string($connection, $_GET['reset']) . " ";
 
     $reset_query = mysqli_query($connection, $query);
     header("location: Posts.php");
