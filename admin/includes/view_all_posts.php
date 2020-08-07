@@ -154,7 +154,7 @@ while ($row = mysqli_fetch_assoc($select_posts)) {
        $row = mysqli_fetch_array($comment_query);
        $comment_id = $row['comment_id'];
 
-    echo "<td><a href='post_comments.php?id=$comment_id'>$count_comments</a></td>"; 
+    echo "<td><a href='post_comments.php?id=$post_id'>$count_comments</a></td>"; 
 
    
     echo "<td>$post_date</td>";
