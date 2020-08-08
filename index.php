@@ -15,7 +15,7 @@
 $per_page = 5;
 if (isset($_GET['page'])) {
 
-    $page = $_GET['page'];
+    $page = escape($_GET['page']);
 } else {
 
     $page = "";
@@ -39,14 +39,14 @@ $count = ceil($count / $per_page);
 $query = "SELECT * FROM posts LIMIT $page_1 ,$per_page";
 $select_all_posts_query = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
-    $post_id = $row['post_id'];
-    $post_title = $row['post_title'];
-    $post_author = $row['post_user'];
-    $post_user = $row['post_user'];
-    $post_date = $row['post_date'];
-    $post_image = $row['post_image'];
-    $post_content = substr($row['post_content'], 0, 100);
-    $post_status = $row['post_status'];
+    $post_id = escape($row['post_id']);
+    $post_title = escape($row['post_title']);
+    $post_author = escape($row['post_user']);
+    $post_user = escape($row['post_user']);
+    $post_date = escape($row['post_date']);
+    $post_image = escape($row['post_image']);
+    $post_content = substr(escape($row['post_content']), 0, 100);
+    $post_status = escape($row['post_status']);
 
     if ($post_status == 'published') {
 

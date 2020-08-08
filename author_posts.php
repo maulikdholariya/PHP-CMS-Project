@@ -15,18 +15,18 @@
 
 if (isset($_GET['p_id'])) {
 
-    $the_post_id = $_GET['p_id'];
-    $the_post_author = $_GET['author'];
+    $the_post_id = escape($_GET['p_id']);
+    $the_post_author = escape($_GET['author']);
 }
 $query = "SELECT * FROM posts WHERE post_user ='{$the_post_author}' ";
 $select_all_posts_query = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
-    $post_title = $row['post_title'];
-    $post_author = $row['post_user'];
-    $post_user = $row['post_user'];
-    $post_date = $row['post_date'];
-    $post_image = $row['post_image'];
-    $post_content = $row['post_content'];
+    $post_title = escape($row['post_title']);
+    $post_author = escape($row['post_user']);
+    $post_user = escape($row['post_user']);
+    $post_date = escape($row['post_date']);
+    $post_image = escape($row['post_image']);
+    $post_content = escape($row['post_content']);
     ?>
 
 
@@ -60,11 +60,11 @@ while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
 
 if (isset($_POST['create_comment'])) {
 
-    $the_post_id = $_GET['p_id'];
+    $the_post_id = escape($_GET['p_id']);
 
-    $comment_author = $_POST['comment_author'];
-    $comment_email = $_POST['comment_email'];
-    $comment_content = $_POST['comment_content'];
+    $comment_author = escape($_POST['comment_author']);
+    $comment_email = escape($_POST['comment_email']);
+    $comment_content = escape($_POST['comment_content']);
 
     if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
 

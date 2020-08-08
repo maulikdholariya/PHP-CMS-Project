@@ -1,3 +1,4 @@
+<?php include "../cms001/admin/function.php";?>
 <!DOCTYPE html>
 <html lang="en">
 

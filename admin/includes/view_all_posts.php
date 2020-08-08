@@ -4,7 +4,7 @@ if (isset($_POST['checkBoxArray'])) {
 
     foreach ($_POST['checkBoxArray'] as $postValueId) {
 
-        $bulk_options = $_POST['bulk_options'];
+        $bulk_options = escape($_POST['bulk_options']);
 
         switch ($bulk_options) {
 
@@ -34,15 +34,15 @@ if (isset($_POST['checkBoxArray'])) {
                 $select_post_query = mysqli_query($connection, $query);
 
                 while ($row = mysqli_fetch_assoc($select_post_query)) {
-                    $post_title = $row['post_title'];
-                    $post_category_id = $row['post_category_id'];
-                    $post_date = $row['post_date'];
-                    $post_user = $row['post_user'];
-                    $post_status = $row['post_status'];
-                    $post_author = $row['post_status'];
-                    $post_image = $row['post_image'];
-                    $post_tags = $row['post_tags'];
-                    $post_content = $row['post_content'];
+                    $post_title = escape($row['post_title']);
+                    $post_category_id = escape($row['post_category_id']);
+                    $post_date = escape($row['post_date']);
+                    $post_user = escape($row['post_user']);
+                    $post_status = escape($row['post_status']);
+                    $post_author = escape($row['post_status']);
+                    $post_image = escape($row['post_image']);
+                    $post_tags = escape($row['post_tags']);
+                    $post_content = escape($row['post_content']);
 
                 }
 
@@ -113,17 +113,17 @@ if (isset($_POST['checkBoxArray'])) {
 $query = "SELECT * FROM posts ORDER BY post_id DESC ";
 $select_posts = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($select_posts)) {
-    $post_id = $row['post_id'];
-    $post_user = $row['post_user'];
-    $post_user = $row['post_user'];
-    $post_title = $row['post_title'];
-    $post_category_id = $row['post_category_id'];
-    $post_status = $row['post_status'];
-    $post_image = $row['post_image'];
-    $post_tags = $row['post_tags'];
-    $post_comment_count = $row['post_comment_count'];
-    $post_date = $row['post_date'];
-    $post_views_count = $row['post_views_count'];
+    $post_id = escape($row['post_id']);
+    $post_user = escape($row['post_user']);
+    $post_user = escape($row['post_user']);
+    $post_title = escape($row['post_title']);
+    $post_category_id = escape($row['post_category_id']);
+    $post_status = escape($row['post_status']);
+    $post_image = escape($row['post_image']);
+    $post_tags = escape($row['post_tags']);
+    $post_comment_count = escape($row['post_comment_count']);
+    $post_date = escape($row['post_date']);
+    $post_views_count = escape($row['post_views_count']);
     echo "<tr>";
     ?>
       <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
@@ -147,8 +147,8 @@ echo "<td>$post_id</td>";
     $select_categories_id = mysqli_query($connection, $query);
 
     while ($row = mysqli_fetch_assoc($select_categories_id)) {
-        $cat_id = $row['cat_id'];
-        $cat_title = $row['cat_title'];
+        $cat_id = escape($row['cat_id']);
+        $cat_title = escape($row['cat_title']);
 
         echo "<td>{$cat_title}</td>";
 
@@ -164,7 +164,7 @@ echo "<td>$post_id</td>";
     $query1 = "SELECT * FROM comments";
     $comment_query = mysqli_query($connection, $query1);
     $row = mysqli_fetch_array($comment_query);
-    $comment_id = $row['comment_id'];
+    $comment_id = escape($row['comment_id']);
 
     echo "<td><a href='post_comments.php?id=$post_id'>$count_comments</a></td>";
 
