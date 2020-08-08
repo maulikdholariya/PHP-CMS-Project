@@ -32,6 +32,7 @@ if (isset($_GET['p_id'])) {
     while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
         $post_title = $row['post_title'];
         $post_author = $row['post_author'];
+        $post_user = $row['post_user'];
         $post_date = $row['post_date'];
         $post_image = $row['post_image'];
         $post_content = $row['post_content'];
@@ -48,7 +49,7 @@ if (isset($_GET['p_id'])) {
                 <a href="#"><?php echo $post_title; ?></a>
             </h2>
             <p class="lead">
-                by <a href="index.php"><?php echo $post_author ?></a>
+                by <a href="index.php"><?php echo $post_user ?></a>
             </p>
             <p><span class="glyphicon glyphicon-time"></span><?php echo $post_date ?></p>
             <hr>
