@@ -22,6 +22,15 @@
 
     <!-- login -->
     <div class="well">
+
+      <?php if(isset($_SESSION['user_role'])): ?>
+       
+        <h4>Login in as <?php echo $_SESSION['username'] ?></h4>
+
+        <a href="includes/logout.php" class="btn btn-primary"> Logout</a>
+      
+      <?php else: ?>
+
         <h4>Login</h4>
         <form action=" ../cms001/includes/login.php" method="post">
 
@@ -40,6 +49,11 @@
             </div>
 
         </form>
+      
+      <?php endif; ?>
+
+
+       
         <!--search form
                      /.input-group -->
     </div>

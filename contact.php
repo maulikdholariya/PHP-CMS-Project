@@ -8,7 +8,7 @@
 
 if (isset($_POST['submit'])) {
 
-    $to       = "maulikdholariya14@gmail.com"
+    $to       = "maulikdholariya14@gmail.com";
     $subject =wordwrap($_POST['subject'],70);
     $body = $_POST['body'];
     $header="From: " .$_post['email'];
