@@ -54,6 +54,11 @@ if (!isset($_SESSION['user_role'])) {
     <!-- <script type="text/javascript"> -->
 
     <script src="js/ckeditor.js"></script>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+
 </head>
 
 <body>

@@ -34,6 +34,10 @@ while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
                 <li>
                     <a href="registration.php">Registration</a>
                 </li>
+                <li>
+                    <a href="contact.php">Contact</a>
+                </li>
+
 
 <?php
 if (session_status() === PHP_SESSION_NONE) {

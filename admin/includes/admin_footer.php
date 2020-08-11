@@ -1,8 +1,7 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
+
 
 <!-- Javascript -->
 <script src="js/scripts.js"></script>
