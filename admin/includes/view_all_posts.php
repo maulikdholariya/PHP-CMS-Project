@@ -41,7 +41,7 @@ if (isset($_POST['checkBoxArray'])) {
                     $post_date = escape($row['post_date']);
                     $post_user = escape($row['post_user']);
                     $post_status = escape($row['post_status']);
-                    $post_author = escape($row['post_status']);
+                    $post_author = escape($row['post_author']);
                     $post_image = escape($row['post_image']);
                     $post_tags = escape($row['post_tags']);
                     $post_content = escape($row['post_content']);

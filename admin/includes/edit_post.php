@@ -66,7 +66,7 @@ if (isset($_POST['update_post'])) {
     </div>
 
     <div class="form-group">
-    <label for="post_category">Category</label>
+        <label for="post_category">Category</label>
         <select name="post_category" id="">
 
             <?php
@@ -81,7 +81,16 @@ while ($row = mysqli_fetch_assoc($select_categories)) {
     $cat_id = escape($row['cat_id']);
     $cat_title = escape($row['cat_title']);
 
-    echo "<option value='$cat_id'>{$cat_title}</option>";
+    if($cat_id == $post_category_id){
+
+        echo "<option selected value='$cat_id'>{$cat_title}</option>";
+
+    }else{
+
+        echo "<option value='$cat_id'>{$cat_title}</option>";
+    }
+
+    
 
 }
 
@@ -94,7 +103,7 @@ while ($row = mysqli_fetch_assoc($select_categories)) {
     <div class="form-group">
         <label for="users">Users</label>
         <select name="post_user" id="">
-<?php echo "<option value='{$post_user}'>{$post_user}</option>"; ?>
+            <?php echo "<option value='{$post_user}'>{$post_user}</option>"; ?>
             <?php
 
 $query = "SELECT * FROM users";
