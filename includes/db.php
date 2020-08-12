@@ -1,4 +1,4 @@
-<?php
+<?php ob_start();
 $db_host = "localhost";
 $db_user = "root";
 $db_pass = "";

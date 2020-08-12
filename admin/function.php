@@ -1,20 +1,14 @@
 <?php
 
-function escape($string){
+function escape($string) {
 
     global $connection;
 
-return mysqli_real_escape_string($connection,trim($string));
-
+    return mysqli_real_escape_string($connection, trim($string));
 
 }
 
-
-
-
-
-function users_online()
-{
+function users_online() {
     if (isset($_GET['onlineusers'])) {
 
         global $connection;
@@ -22,7 +16,7 @@ function users_online()
         if (!$connection) {
 
             session_start();
-            include ("../includes/db.php");
+            include "../includes/db.php";
 
             $session = session_id();
             $time = time();
@@ -51,8 +45,7 @@ function users_online()
 
 users_online();
 
-function confirmQuery($result)
-{
+function confirmQuery($result) {
     global $connection;
     if (!$result) {
         die("Query Failed" . mysqli_error($connection));
@@ -60,8 +53,7 @@ function confirmQuery($result)
 //   return $result;
 }
 
-function insert_categories()
-{
+function insert_categories() {
     global $connection;
 
     if (isset($_POST['submit'])) {
@@ -84,8 +76,7 @@ function insert_categories()
     }
 
 }
-function findAllcategories()
-{
+function findAllcategories() {
     global $connection;
     $query = "SELECT * FROM categories";
     $select_categories = mysqli_query($connection, $query);
@@ -103,8 +94,7 @@ function findAllcategories()
     }
 }
 
-function deletecategories()
-{
+function deletecategories() {
     global $connection;
 
     if (isset($_GET['delete'])) {
@@ -117,7 +107,7 @@ function deletecategories()
     }
 }
 
-function recordCount($table){
+function recordCount($table) {
 
     global $connection;
     $query = "SELECT * FROM " . $table;
@@ -128,10 +118,9 @@ function recordCount($table){
 
     return $result;
 
-
 }
 
-function checkStatus($table,$column,$status){
+function checkStatus($table, $column, $status) {
 
     global $connection;
 
@@ -140,10 +129,9 @@ function checkStatus($table,$column,$status){
     confirmQuery($result);
     return mysqli_num_rows($result);
 
-
 }
 
-function checkUserRole($table,$column,$role){
+function checkUserRole($table, $column, $role) {
 
     global $connection;
 
@@ -152,16 +140,28 @@ function checkUserRole($table,$column,$role){
     confirmQuery($result);
     return mysqli_num_rows($result);
 
-
 }
 
+function is_admin($username = '') {
 
+    global $connection;
 
+    $query = "SELECT user_role FROM users WHERE username = '$username' ";
 
+    $result = mysqli_query($connection, $query);
+    confirmQuery($result);
 
+    $row = mysqli_fetch_array($result);
 
+    if ($row['user_role'] == 'admin') {
 
+        return true;
 
+    } else {
 
+        return false;
+    }
+
+}
 
 ?>
