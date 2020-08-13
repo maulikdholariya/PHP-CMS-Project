@@ -16,7 +16,7 @@
         <li><a href="">User Online: <span class="usersonline"></span></a></li>
 
 
-        <li><a href="../index.php">HOME SITE</a></li>
+        <li><a href="../">HOME SITE</a></li>
 
 
 

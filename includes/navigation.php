@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">CMS Front</a>
+            <a class="navbar-brand" href="../cms001">CMS Front</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -28,7 +28,7 @@ while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
 
     $pageName = basename($_SERVER['PHP_SELF']);
 
-    $registration = 'registration.php';
+    $registration = 'registration';
 
     if(isset($_GET['category']) && $_GET['category'] == $cat_id){
 
@@ -49,10 +49,10 @@ while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
                     <a href="admin">Admin</a>
                 </li>
                 <li class='<?php echo $registration_class ; ?>'>
-                    <a href="registration.php">Registration</a>
+                    <a href="registration">Registration</a>
                 </li>
                 <li>
-                    <a href="contact.php">Contact</a>
+                    <a href="contact">Contact</a>
                 </li>
 
 
