@@ -69,15 +69,26 @@ function insert_categories() {
             echo "This filed should not be empty";
         } else {
 
-            $query = "INSERT INTO categories(cat_title)";
-            $query .= "value('$cat_title')";
-            $create_categories_query = mysqli_query($connection, $query);
-            if (!$create_categories_query) {
+
+
+            $stmt = mysqli_prepare($connection,"INSERT INTO categories(cat_title) VALUES(?) ");
+
+            mysqli_stmt_bind_param($stmt,'s',$cat_title);
+
+            mysqli_stmt_execute($stmt);
+
+            // $query = "INSERT INTO categories(cat_title)";
+            // $query .= "value('$cat_title')";
+            // $create_categories_query = mysqli_query($connection, $query);
+            if (!$stmt) {
 
                 die('QUERY Field' . mysqli_error($connection));
-            } else {
-            }
+            } 
+
+            mysqli_stmt_close($stmt);
         }
+
+        
     }
 
 }

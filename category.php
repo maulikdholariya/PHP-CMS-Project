@@ -17,38 +17,56 @@ if (isset($_GET['category'])) {
 
     $post_category_id = escape($_GET['category']);
 
+    if (is_admin($_SESSION['username'])) {
 
-    if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin'){
+        $stmt1 = mysqli_prepare($connection, "SELECT post_id,post_title,post_author,post_date,post_image,post_content  FROM posts WHERE post_category_id = ? ");
 
-   $query = "SELECT * FROM posts WHERE post_category_id = $post_category_id ";
+    } else {
 
-    }else{
+        $stmt2 = mysqli_prepare($connection, "SELECT post_id,post_title,post_author,post_date,post_image,post_content  FROM posts WHERE post_category_id = ? AND post_status = ? ");
 
-     $query = "SELECT * FROM posts WHERE post_category_id = $post_category_id AND post_status = 'published' ";
+        $published = 'published';
     }
 
+    if (isset($stmt1)) {
 
+        mysqli_stmt_bind_param($stmt1, "i", $post_category_id);
 
-$select_all_posts_query = mysqli_query($connection, $query);
-if(mysqli_num_rows($select_all_posts_query)<1){
+        mysqli_stmt_execute($stmt1);
 
-    echo "<h1 class='text-center'>No posts available<h1>";
+        mysqli_stmt_bind_result($stmt1, $post_id, $post_title, $post_author, $post_date, $post_image, $post_content);
 
-}else{
-while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
-    $post_id = escape($row['post_id']);
-    $post_title = escape($row['post_title']);
-    $post_author = escape($row['post_author']);
-    $post_date = escape($row['post_date']);
-    $post_image = escape($row['post_image']);
-    $post_content = escape($row['post_content']);
+        $stmt = $stmt1;
 
-    ?>
+    } else {
+
+        mysqli_stmt_bind_param($stmt2, "is", $post_category_id, $published);
+
+        mysqli_stmt_execute($stmt2);
+
+        mysqli_stmt_bind_result($stmt2, $post_id, $post_title, $post_author, $post_date, $post_image, $post_content);
+
+        $stmt = $stmt2;
+    }
+
+    if (mysqli_stmt_num_rows($stmt) == 0) {
+
+        //echo "<h1 class='text-center'>No posts available<h1>";
+
+    } 
+        while ($row = mysqli_stmt_fetch($stmt)):
+            // $post_id = escape($row['post_id']);
+            // $post_title = escape($row['post_title']);
+            // $post_author = escape($row['post_author']);
+            // $post_date = escape($row['post_date']);
+            // $post_image = escape($row['post_image']);
+            // $post_content = escape($row['post_content']);
+
+            ?>
 
 
             <h1 class="page-header">
-                Page Heading
-                <small>Secondary Text</small>
+               
             </h1>
 
             <!-- First Blog Post -->
@@ -68,12 +86,11 @@ while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
             <hr>
 
 
-            <?php } } }
-            else{
-                
-                header("Location: index.php");
-                
-            }?>
+        <?php endwhile; mysqli_stmt_close($stmt);    } else {
+
+    header("Location: index.php");
+
+}?>
 
 
         </div>
