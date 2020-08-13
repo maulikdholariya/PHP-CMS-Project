@@ -74,7 +74,7 @@ while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
 
             <!-- First Blog Post -->
             <h2>
-                <a href="post/<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
+                <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
             </h2>
             <p class="lead">
 
