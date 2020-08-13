@@ -204,7 +204,7 @@ echo "<td>$post_id</td>";
 <?php
 
 if (isset($_POST['delete'])) {
-    $the_post_id = $_POST[$post_id];
+    $the_post_id = $_POST['post_id'];
     $query = "DELETE FROM posts WHERE post_id={$the_post_id} ";
 
     $delete_query = mysqli_query($connection, $query);
