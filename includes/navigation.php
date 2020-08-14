@@ -1,3 +1,9 @@
+<?php
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -45,9 +51,20 @@ while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
 
 ?>
 
+
+                <?php if(isLoggedIn()):?>
                 <li>
                     <a href="admin">Admin</a>
                 </li>
+
+                <?php else:  ?>
+                <li>
+                    <a href="login.php">Login</a>
+                </li>
+
+                <?php  endif;  ?>
+
+
                 <li class='<?php echo $registration_class ; ?>'>
                     <a href="registration">Registration</a>
                 </li>

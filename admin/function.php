@@ -2,8 +2,40 @@
 
 function redirect($location) {
 
-    return header("Location:" . $location);
+    header("Location:" . $location);
+    exit;
 }
+
+
+function ifItIsMethod($method=nll){
+    
+    if($_SERVER['REQUEST_METHOD'] == strtoupper($method)){
+
+        return true;
+    }
+        return false;
+
+}   
+
+function isLoggedIn(){
+    
+    if(isset($_SESSION['user_role'])){
+
+        return true;
+    }
+        return false;
+}
+
+function checkIfUserIsLoggedInAndRedirect($redirectLocation=null){
+
+    if(isLoggedIn()){
+
+        redirect($redirectLocation);
+
+    }
+}
+
+
 
 function escape($string) {
 
@@ -268,25 +300,26 @@ function login_user($username, $password) {
         $db_user_lastname = $row['user_lastname'];
         $db_user_role = $row['user_role'];
 
+        if (password_verify($password, $db_user_password)) {
+
+            $_SESSION['username'] = $db_username;
+            $_SESSION['firstname'] = $db_user_firstname;
+            $_SESSION['lastname'] = $db_user_lastname;
+            $_SESSION['user_role'] = $db_user_role;
+            
+            
+            header("location: ../cms001/admin");
+    
+        } else {
+    
+    
+           return false;
+    
+        }
     }
 
-    if (password_verify($password, $db_user_password)) {
+   return true;
 
-        $_SESSION['username'] = $db_username;
-        $_SESSION['firstname'] = $db_user_firstname;
-        $_SESSION['lastname'] = $db_user_lastname;
-        $_SESSION['user_role'] = $db_user_role;
-        
-        
-        header("location: ../admin");
-
-    } else {
-
-
-       // redirect("../index.php");
-        header("location: ../index.php");
-
-    }
 }
 
 ?>
