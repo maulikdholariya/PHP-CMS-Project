@@ -56,6 +56,9 @@ while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
                 <li>
                     <a href="admin">Admin</a>
                 </li>
+                <li>
+                    <a href="../cms001/includes/logout.php">Logout</a>
+                </li>
 
                 <?php else:  ?>
                 <li>

@@ -61,8 +61,8 @@ if (ifItIsMethod('post')) {
 
                 $mail->Subject = 'This is a test mail';
 
-                $mail->Body ='<p>Please click to reset your password
-                <a href="http://localhost:80/php/cms001/reset.php?email=' .$email. '$token='.$token.'">http://localhost:80/php/cms001/reset.php?email=' .$email. '$token='.$token.'</a> </P>';
+ $mail->Body ='<p>Please click to reset your password
+   <a href="http://localhost:80/php/cms001/reset.php?email=' .$email. '&token='.$token.'">http://localhost:80/php/cms001/reset.php?email=' .$email. '&token='.$token.'</a> </P>';
 
 
 
