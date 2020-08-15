@@ -112,7 +112,11 @@ if (isset($_POST['checkBoxArray'])) {
 
             <?php
 
-$query = "SELECT * FROM posts ORDER BY post_id DESC ";
+
+
+$user = $_SESSION['username'];
+
+$query = "SELECT * FROM posts WHERE post_user='$user'ORDER BY post_id DESC ";
 $select_posts = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($select_posts)) {
     $post_id = escape($row['post_id']);
@@ -216,7 +220,7 @@ if (isset($_GET['reset'])) {
 
     $reset_query = mysqli_query($connection, $query);
     header("location: Posts.php");
-}
+}   
 
 ?>
 
