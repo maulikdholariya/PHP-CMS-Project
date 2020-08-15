@@ -9,3 +9,9 @@ if (!$connection) {
     die("connection Failed");
 } 
 ?>
+<?php
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
