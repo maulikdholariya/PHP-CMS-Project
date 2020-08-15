@@ -1,6 +1,6 @@
 <?php 
 
-class config {
+class Config {
 
 
     const SMTP_HOST ='smtp.mailtrap.io';
@@ -10,6 +10,8 @@ class config {
     const SMTP_USER ='3b8edbde7c5e0b';
 
     const SMTP_PASSWORD ='3bf247bc352ca8';
+
+    
 }
 
 

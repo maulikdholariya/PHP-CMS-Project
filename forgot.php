@@ -14,7 +14,7 @@ require './vendor/autoload.php';
 
 require './classes/config.php';
 
-if (!ifItIsMethod('get') && !isset($_GET['forgot'])) {
+if (!isset($_GET['forgot'])) {
 
     redirect('index');
 
@@ -46,13 +46,14 @@ if (ifItIsMethod('post')) {
                 //Server settings
               
                 $mail->isSMTP(); 
-                $mail->Host = config::SMPT_HOST;             
-                $mail->Username = config::SMPT_USER; 
-                $mail->Password = config::SMPT_PASSWORD; 
-                $mail->Port = config::SMPT_PORT; 
+                $mail->Host = Config ::SMTP_HOST;  
+                $mail->Username = Config ::SMTP_USER; 
+                $mail->Password = Config ::SMTP_PASSWORD; 
+                $mail->Port = Config ::SMTP_PORT; 
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
                 $mail->SMTPAuth   = true;
                 $mail->isHTML(true);
+                // $mail->CharSet = 'UTF-8';
 
 
                 $mail->setFrom('maulikdholariya14@gmail.com', 'Maulik');
@@ -60,11 +61,16 @@ if (ifItIsMethod('post')) {
 
                 $mail->Subject = 'This is a test mail';
 
-                $mail->Body ='Email body';
+                $mail->Body ='<p>Please click to reset your password
+                <a href="http://localhost:80/php/cms001/reset.php?email=' .$email. '$token='.$token.'">http://localhost:80/php/cms001/reset.php?email=' .$email. '$token='.$token.'</a> </P>';
+
+
+
+
 
                 if($mail->send()){
 
-                    echo "IT WAS SENT";
+                    $emailSent = true;
                 }else{
                     echo"NOT SENT";
                 }
@@ -82,6 +88,7 @@ if (ifItIsMethod('post')) {
 ?>
 
 
+<?php include "includes/navigation.php";?>
 
 
 <!-- Page Content -->
@@ -95,7 +102,7 @@ if (ifItIsMethod('post')) {
                     <div class="panel-body">
                         <div class="text-center">
 
-
+                            <?php if(!isset($emailSent)): ?>
                                 <h3><i class="fa fa-lock fa-4x"></i></h3>
                                 <h2 class="text-center">Forgot Password?</h2>
                                 <p>You can reset your password here.</p>
@@ -120,6 +127,11 @@ if (ifItIsMethod('post')) {
                                     </form>
 
                                 </div><!-- Body-->
+                                <?php else: ?>
+
+                                <h2>Please check your email </h2>
+
+                                <?php endif; ?>
 
                         </div>
                     </div>
