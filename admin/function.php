@@ -1,5 +1,15 @@
 <?php
 
+function imagePlaceholder($image=''){
+
+    if(!$image){
+        return 'cmsproject.jpg';
+    }else{
+
+        return $image;
+    }
+}
+
 function redirect($location) {
 
     header("Location:" . $location);
