@@ -1,51 +1,73 @@
 <?php
 
-function imagePlaceholder($image=''){
+function imagePlaceholder($image = '') {
 
-    if(!$image){
+    if (!$image) {
         return 'cmsproject.jpg';
-    }else{
+    } else {
 
         return $image;
     }
 }
 
 function redirect($location) {
-
     header("Location:" . $location);
     exit;
 }
 
+function query($query) {
+    global $connection;
+    return mysqli_query($connection, $query);
 
-function ifItIsMethod($method=nll){
-    
-    if($_SERVER['REQUEST_METHOD'] == strtoupper($method)){
-
-        return true;
-    }
-        return false;
-
-}   
-
-function isLoggedIn(){
-    
-    if(isset($_SESSION['user_role'])){
-
-        return true;
-    }
-        return false;
 }
 
-function checkIfUserIsLoggedInAndRedirect($redirectLocation=null){
+function ifItIsMethod($method = nll) {
 
-    if(isLoggedIn()){
+    if ($_SERVER['REQUEST_METHOD'] == strtoupper($method)) {
 
+        return true;
+    }
+    return false;
+
+}
+
+function isLoggedIn() {
+
+    if (isset($_SESSION['user_role'])) {
+
+        return true;
+    }
+    return false;
+}
+
+function loggedInUserId() {
+    if (isLoggedIn()) {
+
+        $result = query("SELECT * FROM users WHERE username='" . $_SESSION['username'] . "'");
+        $user = mysqli_fetch_array($result);
+        confirmQuery($result);
+        return mysqli_num_rows($result) >= 1 ? $user['user_id'] : false;
+    }
+    return false;
+}
+function userLikedThisPost($post_id) {
+    $result = query("SELECT * FROM likes WHERE user_id =" . loggedInUserId() . " AND post_id={$post_id}");
+    confirmQuery($result);
+    return mysqli_num_rows($result) >= 1 ? true : false;
+}
+
+function checkIfUserIsLoggedInAndRedirect($redirectLocation = null) {
+    if (isLoggedIn()) {
         redirect($redirectLocation);
-
     }
 }
+function getPostlikes($post_id){
 
+$result = query("SELECT * FROM likes WHERE post_id=$post_id");
+confirmQuery($result);
+echo mysqli_num_rows($result);
 
+} 
 
 function escape($string) {
 
@@ -111,11 +133,9 @@ function insert_categories() {
             echo "This filed should not be empty";
         } else {
 
+            $stmt = mysqli_prepare($connection, "INSERT INTO categories(cat_title) VALUES(?) ");
 
-
-            $stmt = mysqli_prepare($connection,"INSERT INTO categories(cat_title) VALUES(?) ");
-
-            mysqli_stmt_bind_param($stmt,'s',$cat_title);
+            mysqli_stmt_bind_param($stmt, 's', $cat_title);
 
             mysqli_stmt_execute($stmt);
 
@@ -125,12 +145,11 @@ function insert_categories() {
             if (!$stmt) {
 
                 die('QUERY Field' . mysqli_error($connection));
-            } 
+            }
 
             mysqli_stmt_close($stmt);
         }
 
-        
     }
 
 }
@@ -266,21 +285,18 @@ function register_user($username, $email, $password) {
 
     global $connection;
 
-     
-        $username = mysqli_real_escape_string($connection, $username);
-        $email = mysqli_real_escape_string($connection, $email);
-        $password = mysqli_real_escape_string($connection, $password);
+    $username = mysqli_real_escape_string($connection, $username);
+    $email = mysqli_real_escape_string($connection, $email);
+    $password = mysqli_real_escape_string($connection, $password);
 
-        $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+    $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 
-        $query = "INSERT INTO users(username, user_email, user_password, user_role) ";
-        $query .= "VALUES('{$username}','{$email}','{$password}','subscriber' ) ";
+    $query = "INSERT INTO users(username, user_email, user_password, user_role) ";
+    $query .= "VALUES('{$username}','{$email}','{$password}','subscriber' ) ";
 
-        $register_user_query = mysqli_query($connection, $query);
+    $register_user_query = mysqli_query($connection, $query);
 
-        confirmQuery($register_user_query);
-
-    
+    confirmQuery($register_user_query);
 
 }
 
@@ -289,7 +305,7 @@ function login_user($username, $password) {
     global $connection;
 
     $username = trim($username);
-    $password = trim($password);    
+    $password = trim($password);
 
     $username = mysqli_real_escape_string($connection, $username);
     $password = mysqli_real_escape_string($connection, $password);
@@ -316,19 +332,17 @@ function login_user($username, $password) {
             $_SESSION['firstname'] = $db_user_firstname;
             $_SESSION['lastname'] = $db_user_lastname;
             $_SESSION['user_role'] = $db_user_role;
-            
-            
+
             header("location: ../cms001/admin");
-    
+
         } else {
-    
-    
-           return false;
-    
+
+            return false;
+
         }
     }
 
-   return true;
+    return true;
 
 }
 

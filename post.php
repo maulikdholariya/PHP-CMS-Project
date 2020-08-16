@@ -2,6 +2,60 @@
 <?php include "includes/header.php";?>
 <?php include "includes/navigation.php";?>
 
+
+<?php 
+
+if(isset($_POST['liked'])){
+
+    $post_id = $_POST['post_id'];
+    $user_id = $_POST['user_id'];
+     // 1 = FETCHING THE RIGHT POST
+
+     $query = "SELECT * FROM posts WHERE post_id=$post_id";
+     $postResult = mysqli_query($connection, $query);
+     $post = mysqli_fetch_array($postResult);
+     $likes = $post['likes'];
+
+     // 2 = UPDATE POST WITH INCREMENT LIKES
+
+     mysqli_query($connection, "UPDATE posts SET likes=$likes+1 WHERE post_id=$post_id");
+
+     // 3 = CREATE LIKES FOR POST
+
+     mysqli_query($connection, "INSERT INTO likes(user_id, post_id) VALUES ($user_id,$post_id)");
+     exit();
+
+
+
+
+
+
+}
+if(isset($_POST['unliked'])){
+
+    $post_id = $_POST['post_id'];
+    $user_id = $_POST['user_id'];
+     // 1 = FETCHING THE RIGHT POST
+
+     $query = "SELECT * FROM posts WHERE post_id=$post_id";
+     $postResult = mysqli_query($connection, $query);
+     $post = mysqli_fetch_array($postResult);
+     $likes = $post['likes'];
+
+     //2 = DELETE LIKES
+
+     mysqli_query($connection, "DELETE FROM likes WHERE post_id=$post_id AND user_id=$user_id");
+
+    //  // 3 = UPDATE POST WITH DECREMENTING LIKES
+
+     mysqli_query($connection, "UPDATE posts SET likes=$likes-1 WHERE post_id=$post_id");
+    exit();
+
+
+}
+
+?>
+
 <!-- Page Content -->
 <div class="container">
 
@@ -67,9 +121,41 @@ if (isset($_GET['p_id'])) {
             <img class="img-responsive" src="images/<?php echo imagePlaceholder($post_image); ?>" alt="">
             <hr>
             <p><?php echo $post_content ?></p>
-
-
             <hr>
+
+
+            <?php if(isLoggedIn()){ ?> 
+
+           
+            <div class="row">
+             <P class="pull-right" >
+             <a class="<?php  echo userLikedThisPost($the_post_id)?  'unlike' : 'like'; ?>" href="">
+             <span class="glyphicon glyphicon-thumbs-up"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="<?php  echo userLikedThisPost($the_post_id)?  'I liked this before' : 'want to like it?'; ?>"
+             
+             
+             ></span>
+             <?php  echo userLikedThisPost($the_post_id)? 'unlike' : 'like'; ?>
+             </a></p>
+            </div>
+
+            <?php }else{ ?>
+
+
+                <div class="row">
+             <P class="pull-right login-to-post">You need to <a href="/php/cms001/login.php">login</a> to like</p>
+            </div>
+
+            <?php } ?>
+
+
+            <div class="row">
+            <p class="pull-right likes">Like: <?php getPostlikes($the_post_id);?></p>
+            </div>
+            <div class="clearfix"></div>
+
 
 
             <?php }
@@ -197,3 +283,63 @@ header("Location: index.php");
     <hr>
 
     <?php include "includes/footer.php";?>
+
+   <script>
+   
+      $(document).ready(function(){
+
+          $("[data-toggle='tooltip'").tooltip();
+
+          var post_id = <?php echo $the_post_id; ?>;
+          var user_id =<?php echo loggedInUserId(); ?>;
+
+          // LIKEING
+            $('.like').click(function(){
+
+              
+              $.ajax({
+
+                url: "/php/cms001/post.php?p_id=<?php echo $the_post_id; ?>",
+                type: 'post',
+                data:{
+
+                    'liked':1,
+                    'post_id': post_id,
+                    'user_id' : user_id,
+                }
+              });
+              
+             });
+
+    // UNLIKING
+        $('.unlike').click(function(){
+
+              
+            $.ajax({
+
+            url: "/php/cms001/post.php?p_id=<?php echo $the_post_id; ?>",
+            type: 'post',
+            data:{
+
+                'unliked':1,
+                'post_id': post_id,
+                'user_id' : user_id,
+            }
+
+            });
+
+            });
+
+
+                }
+      
+      );
+   
+   
+   
+   
+   </script>
+
+
+
+
